@@ -12,28 +12,23 @@ MINIMAL_BET = 1
 
 
 
-emoji_count = {
+emoji_count = {                 #dic with symbols(emojisense extention) and value for how rare each symbol is(1 most rare 4 most common)
     "🐨" : 1, 
     "🐱" : 2,
     "🐶" : 3,
     "🦁" : 4
-}                   #needs impovements 
+}                   
 
-emoji_multiplier = {
-    "🐨" : 4, 
-    "🐱" : 3,
-    "🐶" : 2,
-    "🦁" : 1
-}          
 
-def slot_machine_spin(rows, cols, symbols):
+
+def slot_machine_spin(rows, cols, symbols):             #for loop creates the slot machine spin
     all_symbols =[]
     for symbol, symbol_count in symbols.items():
         for _ in range(symbol_count):
             all_symbols.append(symbol)
 
 
-    columns =[]
+    columns =[]                             # empty list columns takes in random selected ite from dictionary, removing value for propability every time it loops thru
     for _ in range(cols):
         column = []
         current_symbols = all_symbols[:]
@@ -50,7 +45,7 @@ def slot_machine_spin(rows, cols, symbols):
         
 
 
-def print_slot_machine(columns):
+def print_slot_machine(columns):                #printing slot machine in terminal when calling function in main(), using "-" as separator between items
     for row in range(len(columns[0])):
         for i, column in enumerate(columns):
             if i != len(columns) - 1:
@@ -60,7 +55,7 @@ def print_slot_machine(columns):
         
         print()
 
-def deposit():
+def deposit():                                  #taking user innput for initial deposit
     while True:
         amount = input("What would you like to deposit? $")
         if amount.isdigit():
@@ -74,7 +69,7 @@ def deposit():
     
     return amount
 
-def number_of_lines():
+def number_of_lines():              #taking user input for the amount of lines user would like to bet on
     while True:
         lines = input(f"On how many lines would you like to bet on? 1 - {MAXIMAL_LINES}. ")
         if lines.isdigit():
@@ -90,41 +85,11 @@ def number_of_lines():
 
 
 
-# def total_earnings(columns, lines, bet, values):
-#     earnings = 0
-    
-
-#     for line in range(lines):
-#         emoji = columns[0][line]
-#         for column in columns:
-#             true_emoji = column[line]
-#             if emoji != true_emoji:
-#                 break
-#         else:
-#             earnings += bet * values[emoji_multiplier]
-            
-#     return earnings
-
-# def check_winnings(columns, lines, bet, values):
-#     winnings = 0
-    
-#     for line in range(lines):
-#         symbol = columns[0][line]
-#         for column in columns:
-#             symbol_to_check = column[line]
-#             if symbol != symbol_to_check:
-#                 break
-#         else:
-#             winnings += values[symbol] * bet
-            
-
-#     return winnings
 
 
 
 
-
-def get_bet():
+def get_bet():              #taking user input on how much user would like to bet on each line
     while True:
         bet = input("What would you like to bet on each line?: $")
         if bet.isdigit():
@@ -138,11 +103,11 @@ def get_bet():
     return bet
 
 
-def main():
-    print("Welcome to my very first slotmachine! ")
+def main():                 #main function where all functions get called
+    print("Welcome to the animal slot machine")
     balance = deposit()
     lines = number_of_lines()
-    while True:
+    while True:             #while loop to calculate total bet of user
         bet = get_bet()
         total_bet =  lines * bet
 
@@ -156,7 +121,8 @@ def main():
     slots = slot_machine_spin(ROWS, COLS, emoji_count)
     print_slot_machine(slots)
 
-    print("you won if you see three of a kind in the lines you bet \n - 🦁: multiply bet on line times 1 \n - 🐶: multiply bet on line times 2 \n - 🐱: multiply bet on line times 3\n - 🐨: multiply bet on line times 4")
+    # explaination for the user how to calculate winnings ifuser won on spin
+    print("you are a winner if you see three of a kind in the lines you bet \n - 🦁: multiply bet on line times 1 \n - 🐶: multiply bet on line times 2 \n - 🐱: multiply bet on line times 3\n - 🐨: multiply bet on line times 4")
    
 main()
 
