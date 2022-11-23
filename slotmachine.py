@@ -2,13 +2,15 @@
 import random
 
 
+ROWS = 3
+COLS = 3
+
 
 MAXIMAL_LINES = 3
 MAXIMAL_BET = 100
 MINIMAL_BET = 1
 
-ROWS = 3
-COLS = 3
+
 
 emoji_count = {
     "🐨" : 1, 
@@ -88,20 +90,37 @@ def number_of_lines():
 
 
 
-def total_earnings(columns, lines, bet, values):
-    earnings = 0
+# def total_earnings(columns, lines, bet, values):
+#     earnings = 0
     
 
-    for line in range(lines):
-        emoji = columns[0][line]
-        for column in columns:
-            true_emoji = column[line]
-            if emoji != true_emoji:
-                break
-        else:
-            earnings += bet * values[emoji_multiplier]
+#     for line in range(lines):
+#         emoji = columns[0][line]
+#         for column in columns:
+#             true_emoji = column[line]
+#             if emoji != true_emoji:
+#                 break
+#         else:
+#             earnings += bet * values[emoji_multiplier]
             
-    return earnings
+#     return earnings
+
+# def check_winnings(columns, lines, bet, values):
+#     winnings = 0
+    
+#     for line in range(lines):
+#         symbol = columns[0][line]
+#         for column in columns:
+#             symbol_to_check = column[line]
+#             if symbol != symbol_to_check:
+#                 break
+#         else:
+#             winnings += values[symbol] * bet
+            
+
+#     return winnings
+
+
 
 
 
@@ -120,7 +139,7 @@ def get_bet():
 
 
 def main():
-    print("Welcome to my very first slotmachine!")
+    print("Welcome to my very first slotmachine! ")
     balance = deposit()
     lines = number_of_lines()
     while True:
@@ -137,7 +156,9 @@ def main():
     slots = slot_machine_spin(ROWS, COLS, emoji_count)
     print_slot_machine(slots)
 
-    earnings = total_earnings(slots, lines, emoji_multiplier, bet)
-    print(f"your total winnings are: {earnings}")
+    print("you won if you see three of a kind in the lines you bet \n - 🦁: multiply bet on line times 1 \n - 🐶: multiply bet on line times 2 \n - 🐱: multiply bet on line times 3\n - 🐨: multiply bet on line times 4")
    
 main()
+
+
+
