@@ -2,7 +2,7 @@
 import random
 
 
-ROWS = 3
+ROWS = 3                    # defining rows and columns / maximal lines / maximal bet / minimal bet for user input
 COLS = 3
 
 
