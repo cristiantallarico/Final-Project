@@ -74,13 +74,13 @@ def deposit():
 
 def number_of_lines():
     while True:
-        lines = input(f"On how many lines would you like to bet on? - {MAXIMAL_LINES}. ")
+        lines = input(f"On how many lines would you like to bet on? 1 - {MAXIMAL_LINES}. ")
         if lines.isdigit():
             lines = int(lines)
             if 1 <= lines <= MAXIMAL_LINES:
                 break
             else:
-                print("Enter a valid number of lines.")
+                print(f"Enter a valid number between 1 and {MAXIMAL_LINES}.")
         else:
             print("Please enter a number.")
     
@@ -90,7 +90,7 @@ def number_of_lines():
 
 def total_earnings(columns, lines, bet, values):
     earnings = 0
-    new_balance = 0
+    
 
     for line in range(lines):
         emoji = columns[0][line]
@@ -99,7 +99,7 @@ def total_earnings(columns, lines, bet, values):
             if emoji != true_emoji:
                 break
         else:
-            earnings += bet * values[emoji]
+            earnings += bet * values[emoji_multiplier]
             
     return earnings
 
@@ -113,7 +113,7 @@ def get_bet():
             if MINIMAL_BET <= bet <= MAXIMAL_BET:
                 break
             else:
-                print(f"Amount must be in between ${MINIMAL_BET} and ${MAXIMAL_BET}")
+                print(f"Amount must be in between {MINIMAL_BET} and {MAXIMAL_BET}")
         else:
             print("Please enter a number.")
     return bet
